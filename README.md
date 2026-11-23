@@ -1,28 +1,98 @@
 # CampusConnect — MIT-WPU Lost & Found
 
-An original starter project for an MIT-WPU campus lost-and-found portal, built with React + Vite and Django REST Framework.
+A web-based Lost & Found Management System designed for the MIT-WPU campus community. Built using React, Vite, Django REST Framework, and PostgreSQL.
 
-## Included
-- React frontend with a responsive dashboard
-- Report lost/found items
-- Search and filter reports
-- Django REST API backed by SQLite
-- API endpoint for listing, creating, and updating reports
-- Student/staff registration and JWT login starter
-- MIT-WPU email-domain validation (not mailbox ownership verification)
-- Starter admin site
-- Clear separation of frontend and backend
+## 🌐 Live Project
 
-> This is a local development starter. MIT-WPU email verification, real notifications, JWT login, and verified claim workflows are not enabled yet. Add them before using with real student/staff data.
+| Component | Link |
+|---|---|
+| **Live Frontend** | https://campusconnect-frontend-ten.vercel.app/ |
+| **Backend API** | https://campusconnect-backend-itee.onrender.com/ |
+| **GitHub Repository** | https://github.com/itsNikhil18/CampusConnect-Lost-Found |
 
-## Requirements
+## 📌 Project Overview
+
+CampusConnect helps students and staff report, search, and recover lost belongings within the campus community.
+
+Users can report lost or found items, browse available reports, search for belongings, and manage their submissions through a responsive web interface.
+
+## ✨ Features
+
+- Responsive React frontend with a dashboard.
+- Report lost and found items.
+- Search and filter reports.
+- Upload images of reported items.
+- Django REST API for managing reports.
+- Student and staff registration.
+- JWT-based login authentication.
+- MIT-WPU email-domain validation.
+- User-specific report dashboard.
+- Django admin interface.
+- PostgreSQL database for production deployment.
+
+## 🛠️ Technology Stack
+
+**Frontend**
+- React.js
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+
+**Backend**
+- Python 3.13
+- Django
+- Django REST Framework
+- Simple JWT
+
+**Database**
+- PostgreSQL (production)
+- SQLite (local development)
+
+**Deployment**
+- Vercel — Frontend hosting
+- Render — Backend hosting and PostgreSQL
+
+## 📂 Project Structure
+
+```text
+CampusConnect/
+│
+├── frontend/
+│   ├── src/
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend/
+│   ├── campusconnect/
+│   ├── reports/
+│   ├── manage.py
+│   └── requirements.txt
+│
+├── .gitignore
+└── README.md
+```
+
+## 💻 Local Installation and Setup
+
+### Requirements
+
 - Python 3.12 or 3.13
-- Node.js LTS (includes npm)
+- Node.js and npm
+- Git
 - VS Code (optional)
 
-## 1. Start the backend (Windows PowerShell)
+### 1. Clone the repository
 
-Open a terminal in this project folder:
+```bash
+git clone https://github.com/itsNikhil18/CampusConnect-Lost-Found.git
+cd CampusConnect-Lost-Found
+```
+
+### 2. Start the backend
+
+Open a terminal in the project folder:
 
 ```powershell
 cd backend
@@ -34,18 +104,23 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-If `py -3.13` is unavailable, use `py -3.12`. Keep this terminal open.
-Backend API: http://127.0.0.1:8000/api/reports/
-Django admin: http://127.0.0.1:8000/admin/
+Backend API:
 
-To create an admin account:
+http://127.0.0.1:8000/api/reports/
+
+Django Admin:
+
+http://127.0.0.1:8000/admin/
+
+To create an administrator account:
+
 ```powershell
 python manage.py createsuperuser
 ```
 
-## 2. Start the frontend
+### 3. Start the frontend
 
-Open a **second** terminal at the project root:
+Open a second terminal:
 
 ```powershell
 cd frontend
@@ -53,15 +128,8 @@ npm install
 npm run dev
 ```
 
-Open the URL Vite prints, usually http://localhost:5173.
+Open the URL provided by Vite, usually:
 
-## Authentication notes
-- Registration accepts email addresses ending in `@mitwpu.edu.in`; this is a domain check only, not email verification.
-- Login uses the Django username and password. During registration, users choose a username.
-- JWT access tokens are stored in browser localStorage in this learning starter. For production, use stronger token storage and security review.
-- Reporting is gated in the UI behind login; production APIs should also enforce ownership and authentication on report creation.
+http://localhost:5173
 
-## Notes
-- The frontend talks to the backend at `http://127.0.0.1:8000`.
-- SQLite is used for local development; the database file is created after migration.
-- Do not put secrets or real credentials in source control.
+## 🔐 Authentication Notes
