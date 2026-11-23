@@ -19,3 +19,15 @@ backend/media/
 
 # IDE
 .vscode/
+# Python virtual environment
+backend/.venv/
+backend/venv/
+
+# Python cache
+backend/**/__pycache__/
+*.pyc
+
+# Environment secrets
+.env
+.env.*
+!.env.example
