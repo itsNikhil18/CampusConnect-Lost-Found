@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API = "http://127.0.0.1:8000/api/reports/";
+const API = "https://campusconnect-backend-itee.onrender.com/api/reports/";
 const starterReports = [
   { id: "demo-1", title: "Black water bottle", item_type: "found", category: "Bottle", description: "Found near the library entrance.", location: "Central Library", event_date: "2026-10-21", contact_email: "demo@mitwpu.edu.in", status: "open" },
   { id: "demo-2", title: "Student ID card", item_type: "lost", category: "ID Card", description: "Lost after the afternoon lecture. Name is visible on the card.", location: "Academic Block", event_date: "2026-10-20", contact_email: "demo@mitwpu.edu.in", status: "open" },
@@ -99,7 +99,7 @@ function App() {
 
   useEffect(() => {
     if (!authToken) return;
-    fetch("http://127.0.0.1:8000/api/auth/me/", { headers: { Authorization: `Bearer ${authToken}` } })
+    fetch("https://campusconnect-backend-itee.onrender.com/api/auth/me/", { headers: { Authorization: `Bearer ${authToken}` } })
       .then((r) => { if (!r.ok) throw new Error("Session expired"); return r.json(); })
       .then(setCurrentUser)
       .catch(() => { localStorage.removeItem("cc_access"); localStorage.removeItem("cc_refresh"); setAuthToken(""); setCurrentUser(null); });
@@ -113,7 +113,7 @@ function App() {
       const payload = authMode === "register"
         ? authForm
         : { username: authForm.email, password: authForm.password };
-      const response = await fetch(`http://127.0.0.1:8000/api/auth/${endpoint}`, {
+      const response = await fetch(`https://campusconnect-backend-itee.onrender.com/api/auth/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -131,7 +131,7 @@ function App() {
         localStorage.setItem("cc_access", data.access);
         localStorage.setItem("cc_refresh", data.refresh);
         setAuthToken(data.access);
-        const meResponse = await fetch("http://127.0.0.1:8000/api/auth/me/", { headers: { Authorization: `Bearer ${data.access}` } });
+        const meResponse = await fetch("https://campusconnect-backend-itee.onrender.com/api/auth/me/", { headers: { Authorization: `Bearer ${data.access}` } });
         if (meResponse.ok) setCurrentUser(await meResponse.json());
         setAuthMode("");
         setNotice("Welcome to CampusConnect!");
@@ -246,7 +246,7 @@ function App() {
           {dashboardLoading ? <div className="empty-state"><p>Loading your reports…</p></div> :
             myReports.length ? <div className="report-grid">{myReports.map((item) => <article className="report-card" key={item.id}>
               <div className={`report-art ${item.item_type}`}>
-                {item.image ? <img className="report-photo" src={item.image.startsWith("http") ? item.image : `http://127.0.0.1:8000${item.image}`} alt={item.title} /> : <span>◇</span>}
+                {item.image ? <img className="report-photo" src={item.image.startsWith("http") ? item.image : `https://campusconnect-backend-itee.onrender.com${item.image}`} alt={item.title} /> : <span>◇</span>}
                 <label className={item.item_type}>{item.item_type === "lost" ? "LOST ITEM" : "FOUND ITEM"}</label>
               </div>
               <div className="report-content">
@@ -276,7 +276,7 @@ function App() {
           {visibleReports.length ? <div className="report-grid">{visibleReports.map((item) => <article className="report-card" key={item.id}>
             <div className={`report-art ${item.item_type}`}>
               {item.image
-                ? <img className="report-photo" src={item.image.startsWith("http") ? item.image : `http://127.0.0.1:8000${item.image}`} alt={item.title} />
+                ? <img className="report-photo" src={item.image.startsWith("http") ? item.image : `https://campusconnect-backend-itee.onrender.com${item.image}`} alt={item.title} />
                 : <span>{item.category === "Electronics" ? "⌁" : item.category === "ID Card" ? "▤" : item.category === "Bottle" ? "♧" : item.category === "Accessories" ? "✳" : "◇"}</span>}
               <label className={item.item_type}>{item.item_type === "lost" ? "LOST ITEM" : "FOUND ITEM"}</label>
             </div>
